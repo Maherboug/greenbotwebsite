@@ -1,0 +1,1487 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr" data-lang="fr" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#1A4A1C">
+<title>GreenBot Solutions – Robot Agricole Intelligent & Smart Agriculture</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Noto+Sans+Arabic:wght@300;400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ════════════════════════════════════════
+   RESET & TOKENS
+════════════════════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --gd:#1A4A1C;
+  --gv:#3EA843;
+  --gl:#72C376;
+  --gp:#E6F4E7;
+  --gold:#C9A84C;
+  --slate:#141B1E;
+  --bg:#F7FAF7;
+  --bg2:#FFFFFF;
+  --bg3:#EDF4EE;
+  --text:#141B1E;
+  --t2:#45574A;
+  --t3:#7A8F7E;
+  --card:#FFFFFF;
+  --bdr:rgba(26,74,28,.1);
+  --nav:rgba(247,250,247,.93);
+  --brd:rgba(0,0,0,.07);
+}
+[data-theme="dark"]{
+  --bg:#0C1210;
+  --bg2:#121A13;
+  --bg3:#192019;
+  --text:#E2EDE3;
+  --t2:#8A9E8C;
+  --t3:#637066;
+  --card:#121A13;
+  --bdr:rgba(62,168,67,.18);
+  --nav:rgba(12,18,16,.93);
+  --brd:rgba(255,255,255,.06);
+}
+
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter','Noto Sans Arabic',sans-serif;
+  background:var(--bg);color:var(--text);
+  overflow-x:hidden;transition:background .3s,color .3s;
+}
+[dir="rtl"] body{font-family:'Noto Sans Arabic','Inter',sans-serif}
+
+/* ════════════════════════════════════════
+   NAV
+════════════════════════════════════════ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:300;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.9rem 4rem;
+  background:var(--nav);backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--brd);transition:background .3s;
+}
+.logo{
+  display:flex;align-items:center;gap:.55rem;
+  font-family:'Syne',sans-serif;font-weight:800;font-size:1.2rem;
+  color:var(--gd);text-decoration:none;
+}
+[data-theme="dark"] .logo{color:var(--gl)}
+.lmark{
+  width:32px;height:32px;border-radius:8px;
+  background:var(--gd);display:flex;align-items:center;
+  justify-content:center;font-size:.95rem;flex-shrink:0;
+}
+[data-theme="dark"] .lmark{background:var(--gv)}
+.nav-links{display:flex;gap:1.8rem;list-style:none}
+.nav-links a{
+  font-size:.83rem;font-weight:500;color:var(--t2);
+  text-decoration:none;transition:color .2s;
+}
+.nav-links a:hover{color:var(--gv)}
+.nav-r{display:flex;align-items:center;gap:.7rem}
+.ltoggle{
+  display:flex;background:var(--bg3);border-radius:2rem;
+  padding:3px;gap:2px;border:1px solid var(--brd);
+}
+.lbtn{
+  padding:.28rem .75rem;border-radius:2rem;border:none;
+  font-size:.76rem;font-weight:700;cursor:pointer;letter-spacing:.04em;
+  background:transparent;color:var(--t3);transition:all .2s;
+}
+.lbtn.on{background:var(--gd);color:#fff}
+[data-theme="dark"] .lbtn.on{background:var(--gv)}
+.tbtn{
+  width:34px;height:34px;border-radius:50%;
+  border:1px solid var(--brd);background:var(--bg3);
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  font-size:.95rem;transition:background .2s;
+}
+.tbtn:hover{background:var(--gp)}
+.ncta{
+  background:var(--gv);color:#fff;border:none;
+  font-size:.82rem;font-weight:600;padding:.5rem 1.25rem;
+  border-radius:2rem;cursor:pointer;text-decoration:none;
+  transition:background .2s,transform .2s;
+}
+.ncta:hover{background:var(--gd);transform:translateY(-1px)}
+.hamburger{
+  display:none;flex-direction:column;gap:5px;cursor:pointer;
+  background:none;border:none;padding:.3rem;
+}
+.hamburger span{
+  display:block;width:22px;height:2px;
+  background:var(--text);border-radius:2px;transition:all .3s;
+}
+
+/* Mobile nav drawer */
+.mobile-nav{
+  display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:299;
+  background:var(--bg2);padding:5rem 2rem 2rem;
+  flex-direction:column;gap:1.5rem;
+}
+.mobile-nav.open{display:flex}
+.mobile-nav a{
+  font-size:1.3rem;font-weight:600;color:var(--text);
+  text-decoration:none;padding:.5rem 0;
+  border-bottom:1px solid var(--brd);
+}
+
+/* ════════════════════════════════════════
+   HERO — ROBOT EN PREMIER
+════════════════════════════════════════ */
+.hero{
+  min-height:100vh;
+  background:linear-gradient(145deg,#0E2B10 0%,#1A4A1C 40%,#267A2A 80%,#2E9433 100%);
+  display:flex;align-items:center;
+  padding:8rem 4rem 6rem;
+  position:relative;overflow:hidden;
+}
+.hero-bg-grid{
+  position:absolute;inset:0;pointer-events:none;
+  opacity:.04;
+  background-image:
+    linear-gradient(rgba(255,255,255,.5) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.5) 1px,transparent 1px);
+  background-size:48px 48px;
+}
+.hero-glow1{
+  position:absolute;top:-100px;right:-100px;
+  width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle,rgba(62,168,67,.2) 0%,transparent 70%);
+  pointer-events:none;
+}
+.hero-glow2{
+  position:absolute;bottom:-150px;left:-100px;
+  width:500px;height:500px;border-radius:50%;
+  background:radial-gradient(circle,rgba(26,74,28,.5) 0%,transparent 70%);
+  pointer-events:none;
+}
+[dir="rtl"] .hero-glow1{right:auto;left:-100px}
+[dir="rtl"] .hero-glow2{left:auto;right:-100px}
+
+.hero-inner{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:4rem;align-items:center;
+  max-width:1300px;margin:0 auto;width:100%;position:relative;z-index:2;
+}
+[dir="rtl"] .hero-inner{direction:rtl}
+
+.hero-text{}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);
+  color:rgba(255,255,255,.85);font-size:.73rem;font-weight:600;
+  letter-spacing:.08em;text-transform:uppercase;
+  padding:.32rem .9rem;border-radius:2rem;margin-bottom:1.6rem;
+}
+.ldot{width:6px;height:6px;border-radius:50%;background:var(--gl);animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+.hero h1{
+  font-family:'Syne',sans-serif;font-size:clamp(2.3rem,4.5vw,4.2rem);
+  font-weight:800;line-height:1.07;color:#fff;margin-bottom:1.4rem;
+}
+[dir="rtl"] .hero h1{font-family:'Noto Sans Arabic',sans-serif;font-weight:700}
+.hero h1 em{font-style:normal;color:var(--gl)}
+.hero-sub{
+  font-size:1rem;line-height:1.78;font-weight:300;
+  color:rgba(255,255,255,.7);margin-bottom:2.2rem;max-width:480px;
+}
+[dir="rtl"] .hero-sub{font-family:'Noto Sans Arabic',sans-serif}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-white{
+  background:#fff;color:var(--gd);
+  font-family:'Syne',sans-serif;font-weight:700;font-size:.92rem;
+  padding:.85rem 2rem;border-radius:2rem;text-decoration:none;
+  transition:transform .2s,box-shadow .2s;display:inline-block;
+}
+.btn-white:hover{transform:translateY(-3px);box-shadow:0 14px 35px rgba(0,0,0,.25)}
+.btn-outline{
+  border:1.5px solid rgba(255,255,255,.4);color:#fff;
+  font-size:.92rem;font-weight:500;
+  padding:.85rem 2rem;border-radius:2rem;text-decoration:none;
+  transition:all .2s;display:inline-block;
+}
+.btn-outline:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.7)}
+
+/* Robot visual panel */
+.robot-panel{
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:1.8rem;padding:2rem;
+  backdrop-filter:blur(8px);
+  position:relative;
+}
+.rp-header{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:1.5rem;
+}
+.rp-title{
+  font-family:'Syne',sans-serif;font-weight:800;font-size:1rem;
+  color:#fff;
+}
+.rp-badge{
+  background:var(--gold);color:#fff;
+  font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  padding:.28rem .8rem;border-radius:2rem;
+}
+.robot-main-icon{
+  text-align:center;font-size:5.5rem;margin:1rem 0;
+  display:block;
+  animation:float 4s ease-in-out infinite;
+}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.module-chips{
+  display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-top:1.2rem;
+}
+.mc{
+  display:flex;align-items:center;gap:.5rem;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);
+  border-radius:.8rem;padding:.65rem .9rem;
+  font-size:.8rem;color:rgba(255,255,255,.85);font-weight:500;
+  transition:background .2s;
+}
+.mc:hover{background:rgba(255,255,255,.14)}
+.mc-dot{
+  width:8px;height:8px;border-radius:50%;
+  background:var(--gl);flex-shrink:0;
+}
+.rp-stat-row{
+  display:flex;gap:.7rem;margin-top:1.2rem;
+}
+.rp-stat{
+  flex:1;background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:.8rem;padding:.7rem;text-align:center;
+}
+.rps-n{
+  font-family:'Syne',sans-serif;font-weight:800;
+  font-size:1.4rem;color:#fff;line-height:1;
+}
+.rps-l{font-size:.65rem;color:rgba(255,255,255,.45);margin-top:.25rem;letter-spacing:.04em}
+
+/* Hero bottom stats bar */
+.hero-statsbar{
+  position:absolute;bottom:0;left:0;right:0;
+  display:flex;background:rgba(0,0,0,.3);
+  backdrop-filter:blur(12px);
+  border-top:1px solid rgba(255,255,255,.08);
+  z-index:3;
+}
+.hsb-item{
+  flex:1;padding:1.1rem 1.5rem;text-align:center;
+  border-right:1px solid rgba(255,255,255,.07);
+}
+.hsb-item:last-child{border-right:none}
+.hsb-n{
+  font-family:'Syne',sans-serif;font-weight:800;
+  font-size:1.6rem;color:#fff;line-height:1;
+}
+.hsb-l{font-size:.7rem;color:rgba(255,255,255,.45);margin-top:.25rem;letter-spacing:.04em}
+
+/* ════════════════════════════════════════
+   TERRAIN DIVIDER
+════════════════════════════════════════ */
+.tdiv{display:block;line-height:0;overflow:hidden}
+.tdiv svg{display:block;width:100%}
+
+/* ════════════════════════════════════════
+   SECTION COMMONS
+════════════════════════════════════════ */
+.sec{padding:5.5rem 4rem}
+.sec-center{text-align:center}
+.sec-center .sec-desc{margin-left:auto;margin-right:auto}
+.eyebrow{
+  font-size:.7rem;font-weight:700;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--gv);margin-bottom:.7rem;
+}
+[dir="rtl"] .eyebrow{letter-spacing:0}
+.stitle{
+  font-family:'Syne',sans-serif;font-weight:800;
+  font-size:clamp(1.7rem,2.8vw,2.6rem);
+  color:var(--text);line-height:1.15;margin-bottom:.9rem;
+}
+[dir="rtl"] .stitle{font-family:'Noto Sans Arabic',sans-serif;font-weight:700}
+.sdesc{
+  font-size:.97rem;line-height:1.8;color:var(--t2);
+  max-width:580px;margin-bottom:2.5rem;
+}
+
+/* ════════════════════════════════════════
+   SECTION 1 — PROBLÈMES → ROBOT
+════════════════════════════════════════ */
+.prob-sec{background:var(--bg2)}
+.prob-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:4rem;
+  align-items:start;margin-top:3rem;
+}
+.prob-cards{display:flex;flex-direction:column;gap:1.2rem}
+.pcard{
+  background:var(--bg3);border-radius:1.1rem;padding:1.6rem;
+  border-left:4px solid var(--gv);
+  display:flex;gap:1.2rem;align-items:flex-start;
+}
+[dir="rtl"] .pcard{border-left:none;border-right:4px solid var(--gv)}
+.pcard-ico{
+  font-size:2rem;flex-shrink:0;
+  width:52px;height:52px;border-radius:50%;
+  background:var(--gp);display:flex;align-items:center;justify-content:center;
+}
+.pcard h4{
+  font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;
+  color:var(--text);margin-bottom:.4rem;
+}
+[dir="rtl"] .pcard h4{font-family:'Noto Sans Arabic',sans-serif}
+.pcard p{font-size:.85rem;color:var(--t2);line-height:1.6}
+
+/* Robot showcase */
+.robot-showcase{
+  background:linear-gradient(135deg,var(--gd) 0%,#267A2A 100%);
+  border-radius:1.6rem;padding:2.2rem;
+  position:relative;overflow:hidden;
+}
+.robot-showcase::before{
+  content:'';position:absolute;top:-40px;right:-40px;
+  width:180px;height:180px;border-radius:50%;
+  background:rgba(255,255,255,.05);
+}
+.rs-label{
+  font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(255,255,255,.5);margin-bottom:.8rem;
+}
+.rs-title{
+  font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;
+  color:#fff;margin-bottom:.4rem;
+}
+[dir="rtl"] .rs-title{font-family:'Noto Sans Arabic',sans-serif}
+.rs-sub{font-size:.85rem;color:rgba(255,255,255,.6);margin-bottom:1.5rem;line-height:1.6}
+.rs-big-icon{
+  text-align:center;font-size:5rem;margin:1rem 0;display:block;
+  animation:float 4s ease-in-out infinite;
+}
+.rs-modules{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+.rsm{
+  display:flex;align-items:center;gap:.6rem;
+  background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.12);
+  border-radius:.8rem;padding:.7rem .9rem;
+}
+.rsm-ico{
+  width:32px;height:32px;border-radius:50%;
+  background:rgba(255,255,255,.12);
+  display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0;
+}
+.rsm-text h5{
+  font-family:'Syne',sans-serif;font-weight:700;font-size:.82rem;color:#fff;
+}
+[dir="rtl"] .rsm-text h5{font-family:'Noto Sans Arabic',sans-serif}
+.rsm-text p{font-size:.7rem;color:rgba(255,255,255,.5)}
+
+/* ════════════════════════════════════════
+   SECTION 2 — LOCATION
+════════════════════════════════════════ */
+.loc-sec{background:var(--bg3)}
+.loc-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:1.5rem;margin-top:2.5rem;
+}
+.loc-card{
+  background:var(--card);border-radius:1.2rem;
+  padding:2rem;border:1px solid var(--bdr);
+  transition:transform .25s,box-shadow .25s;
+  position:relative;overflow:hidden;
+}
+.loc-card:hover{transform:translateY(-5px);box-shadow:0 20px 45px rgba(26,74,28,.12)}
+[data-theme="dark"] .loc-card:hover{box-shadow:0 20px 45px rgba(0,0,0,.4)}
+.loc-card::after{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--gv),var(--gl));
+  transform:scaleX(0);transform-origin:left;transition:transform .3s;
+}
+[dir="rtl"] .loc-card::after{transform-origin:right}
+.loc-card:hover::after{transform:scaleX(1)}
+.lc-ico{
+  font-size:2rem;margin-bottom:1rem;display:block;
+}
+.loc-card h3{
+  font-family:'Syne',sans-serif;font-weight:700;font-size:1.1rem;
+  color:var(--text);margin-bottom:.6rem;
+}
+[dir="rtl"] .loc-card h3{font-family:'Noto Sans Arabic',sans-serif}
+.loc-card p{font-size:.88rem;color:var(--t2);line-height:1.65}
+.loc-tag{
+  display:inline-block;margin-top:1rem;
+  background:var(--gp);color:var(--gd);
+  font-size:.75rem;font-weight:600;letter-spacing:.03em;
+  padding:.3rem .9rem;border-radius:2rem;
+}
+[data-theme="dark"] .loc-tag{background:rgba(62,168,67,.15);color:var(--gl)}
+
+/* ════════════════════════════════════════
+   SECTION 3 — IoT SOLUTIONS
+════════════════════════════════════════ */
+.iot-sec{background:var(--bg2)}
+.iot-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:1.3rem;margin-top:2.5rem;
+}
+.iot-card{
+  background:var(--card);border:1px solid var(--bdr);
+  border-radius:1.2rem;padding:1.8rem;
+  transition:transform .25s,box-shadow .25s;position:relative;overflow:hidden;
+}
+.iot-card:hover{transform:translateY(-5px);box-shadow:0 18px 40px rgba(26,74,28,.11)}
+[data-theme="dark"] .iot-card:hover{box-shadow:0 18px 40px rgba(0,0,0,.35)}
+.iot-bar{
+  position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--gv),var(--gl));
+  transform:scaleX(0);transform-origin:left;transition:transform .3s;
+}
+[dir="rtl"] .iot-bar{transform-origin:right}
+.iot-card:hover .iot-bar{transform:scaleX(1)}
+.iot-icon{font-size:2.3rem;margin-bottom:1.1rem;display:block}
+.iot-card h3{
+  font-family:'Syne',sans-serif;font-weight:700;font-size:1.05rem;
+  color:var(--text);margin-bottom:.9rem;
+}
+[dir="rtl"] .iot-card h3{font-family:'Noto Sans Arabic',sans-serif}
+.iot-feats{list-style:none}
+.iot-feats li{
+  display:flex;align-items:flex-start;gap:.5rem;
+  font-size:.84rem;color:var(--t2);padding:.22rem 0;line-height:1.5;
+}
+.iot-feats li::before{
+  content:'';flex-shrink:0;
+  width:5px;height:5px;border-radius:50%;
+  background:var(--gv);margin-top:.45rem;
+}
+
+/* ════════════════════════════════════════
+   SECTION 4 — CLOUD / DASHBOARD
+════════════════════════════════════════ */
+.cloud-sec{
+  background:var(--bg3);
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:4rem;align-items:center;padding:5.5rem 4rem;
+}
+.cloud-text .sdesc{margin-bottom:1.8rem}
+.access-chips{display:flex;gap:.8rem;flex-wrap:wrap}
+.chip{
+  display:flex;align-items:center;gap:.4rem;
+  background:var(--bg2);border-radius:2rem;
+  padding:.45rem 1rem;font-size:.82rem;
+  color:var(--gd);font-weight:600;border:1px solid var(--bdr);
+}
+[data-theme="dark"] .chip{color:var(--gl);background:rgba(62,168,67,.08)}
+
+/* Dashboard mock */
+.dash{
+  background:var(--slate);border-radius:1.5rem;
+  padding:1.6rem;overflow:hidden;
+}
+[data-theme="dark"] .dash{background:#000;border:1px solid rgba(62,168,67,.12)}
+.dash-tb{
+  display:flex;align-items:center;gap:.45rem;margin-bottom:1.3rem;
+}
+.dtb-dot{width:10px;height:10px;border-radius:50%}
+.dtb-url{
+  flex:1;background:rgba(255,255,255,.06);border-radius:.4rem;
+  height:20px;display:flex;align-items:center;padding:0 .7rem;
+  font-size:.6rem;color:rgba(255,255,255,.25);letter-spacing:.03em;
+}
+.dash-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.6rem;margin-bottom:.6rem}
+.dw{
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);
+  border-radius:.7rem;padding:.8rem;
+}
+.dw-l{font-size:.58rem;color:rgba(255,255,255,.3);letter-spacing:.06em;text-transform:uppercase;margin-bottom:.35rem}
+.dw-v{
+  font-family:'Syne',sans-serif;font-weight:700;
+  font-size:1.25rem;color:#fff;line-height:1;
+}
+.dw-v.ok{color:#72C376}
+.dw-v.warn{color:#FFB74D}
+.dash-chart{
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);
+  border-radius:.7rem;padding:.9rem;margin-bottom:.6rem;
+}
+.chart-lbl{font-size:.58rem;color:rgba(255,255,255,.25);letter-spacing:.05em;margin-bottom:.7rem}
+.bars{display:flex;align-items:flex-end;gap:3px;height:50px}
+.bar{flex:1;border-radius:3px 3px 0 0;background:rgba(62,168,67,.25)}
+.bar.hi{background:#3EA843}
+.dash-alerts{
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);
+  border-radius:.7rem;padding:.8rem;
+}
+.al-row{
+  display:flex;align-items:center;gap:.55rem;
+  padding:.28rem 0;border-bottom:1px solid rgba(255,255,255,.04);
+}
+.al-row:last-child{border-bottom:none}
+.al-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.al-dot.g{background:#3EA843}
+.al-dot.a{background:#FFB74D}
+.al-txt{font-size:.62rem;color:rgba(255,255,255,.45)}
+.al-t{font-size:.58rem;color:rgba(255,255,255,.2);margin-left:auto}
+
+/* ════════════════════════════════════════
+   SECTION 5 — SmartFarm Vision
+════════════════════════════════════════ */
+.vision-sec{background:var(--gd);padding:5.5rem 4rem}
+[data-theme="dark"] .vision-sec{background:#071009}
+.vision-sec .eyebrow{color:var(--gl)}
+.vision-sec .stitle{color:#fff}
+.vision-sec .sdesc{color:rgba(255,255,255,.6)}
+.vision-grid{
+  display:grid;grid-template-columns:1fr 1fr 1fr;
+  gap:1.2rem;margin-top:2.5rem;
+}
+.vision-card{
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:1.1rem;padding:1.8rem;
+  text-align:center;transition:background .2s,transform .2s;
+}
+.vision-card:hover{background:rgba(255,255,255,.09);transform:translateY(-4px)}
+.vc-icon{font-size:2.5rem;display:block;margin-bottom:1rem}
+.vision-card h4{
+  font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;
+  color:#fff;margin-bottom:.5rem;
+}
+[dir="rtl"] .vision-card h4{font-family:'Noto Sans Arabic',sans-serif}
+.vision-card p{font-size:.83rem;color:rgba(255,255,255,.55);line-height:1.6}
+.cloud-flow{
+  margin-top:3rem;
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);
+  border-radius:1.3rem;padding:2rem;
+  display:flex;align-items:center;justify-content:center;
+  gap:1.5rem;flex-wrap:wrap;
+}
+.cf-node{
+  display:flex;flex-direction:column;align-items:center;gap:.5rem;
+  font-size:.78rem;color:rgba(255,255,255,.6);text-align:center;
+  min-width:90px;
+}
+.cf-ico{font-size:2rem}
+.cf-arrow{font-size:1.5rem;color:var(--gl);opacity:.6}
+
+/* ════════════════════════════════════════
+   SECTION 6 — POURQUOI GREENBOT
+════════════════════════════════════════ */
+.why-sec{background:var(--bg2)}
+.why-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:1.1rem;margin-top:2.5rem;
+}
+.why-card{
+  background:var(--bg3);border-radius:1rem;padding:1.5rem;
+  border:1px solid var(--brd);transition:border-color .2s,transform .2s;
+}
+.why-card:hover{border-color:var(--gv);transform:translateY(-3px)}
+.wico{
+  width:38px;height:38px;border-radius:50%;
+  background:var(--gp);border:1px solid rgba(62,168,67,.25);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1rem;margin-bottom:1rem;
+}
+[data-theme="dark"] .wico{background:rgba(62,168,67,.12)}
+.why-card h4{
+  font-family:'Syne',sans-serif;font-weight:700;font-size:.92rem;
+  color:var(--text);margin-bottom:.35rem;
+}
+[dir="rtl"] .why-card h4{font-family:'Noto Sans Arabic',sans-serif}
+.why-card p{font-size:.8rem;color:var(--t3);line-height:1.55}
+
+/* ════════════════════════════════════════
+   SECTION 7 — STATS
+════════════════════════════════════════ */
+.stats-sec{
+  background:var(--gd);
+  display:flex;flex-wrap:wrap;
+}
+[data-theme="dark"] .stats-sec{background:#071009}
+.stat-box{
+  flex:1;min-width:170px;padding:3rem 2rem;text-align:center;
+  border-right:1px solid rgba(255,255,255,.08);
+}
+.stat-box:last-child{border-right:none}
+.sbn{
+  font-family:'Syne',sans-serif;font-weight:800;
+  font-size:2.6rem;color:#fff;line-height:1;margin-bottom:.35rem;
+}
+.sbl{font-size:.78rem;color:rgba(255,255,255,.45);letter-spacing:.04em}
+
+/* ════════════════════════════════════════
+   SECTION 8 — CO-FOUNDER
+════════════════════════════════════════ */
+.cofound-sec{background:var(--bg3);padding:5.5rem 4rem}
+.cofound-inner{
+  background:var(--card);border-radius:1.6rem;
+  padding:3rem;border:1px solid var(--bdr);
+  display:grid;grid-template-columns:1fr 1fr 1fr;
+  gap:2rem;align-items:start;
+}
+.cf-profiles{display:flex;gap:1.2rem;flex-direction:column}
+.cf-profile{
+  background:var(--bg3);border-radius:1rem;padding:1.4rem;
+  border:1px solid var(--bdr);display:flex;gap:1rem;align-items:flex-start;
+}
+.cf-profile-ico{
+  font-size:1.6rem;flex-shrink:0;
+  width:46px;height:46px;border-radius:50%;
+  background:var(--gp);display:flex;align-items:center;justify-content:center;
+}
+[data-theme="dark"] .cf-profile-ico{background:rgba(62,168,67,.12)}
+.cf-profile h4{
+  font-family:'Syne',sans-serif;font-weight:700;font-size:.92rem;
+  color:var(--text);margin-bottom:.3rem;
+}
+[dir="rtl"] .cf-profile h4{font-family:'Noto Sans Arabic',sans-serif}
+.cf-profile p{font-size:.8rem;color:var(--t3);line-height:1.5}
+.cf-cta-col{
+  text-align:center;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+}
+.cf-cta-col .stitle{font-size:1.5rem;margin-bottom:.8rem}
+.cf-cta-col .sdesc{margin-bottom:1.5rem;font-size:.9rem}
+.btn-gold{
+  background:var(--gold);color:#fff;
+  font-family:'Syne',sans-serif;font-weight:700;font-size:.95rem;
+  padding:.9rem 2.2rem;border-radius:2rem;text-decoration:none;
+  transition:transform .2s,box-shadow .2s;display:inline-block;
+}
+.btn-gold:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(201,168,76,.35)}
+
+/* ════════════════════════════════════════
+   SECTION 9 — CONTACT
+════════════════════════════════════════ */
+.contact-sec{
+  background:var(--bg2);
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:4rem;padding:5.5rem 4rem;
+}
+.contact-form{display:flex;flex-direction:column;gap:.9rem}
+.fg2{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+.ff{display:flex;flex-direction:column;gap:.38rem}
+.ff label{font-size:.76rem;font-weight:600;color:var(--t2);letter-spacing:.03em}
+.ff input,.ff textarea,.ff select{
+  background:var(--bg3);border:1px solid var(--brd);
+  border-radius:.7rem;padding:.68rem 1rem;
+  font-size:.88rem;color:var(--text);font-family:inherit;
+  outline:none;transition:border-color .2s;
+}
+.ff input:focus,.ff textarea:focus,.ff select:focus{border-color:var(--gv)}
+.ff textarea{resize:vertical;min-height:120px}
+.btn-submit{
+  background:var(--gd);color:#fff;border:none;
+  border-radius:2rem;padding:.85rem 2.3rem;
+  font-size:.92rem;font-weight:600;cursor:pointer;
+  transition:background .2s,transform .2s;align-self:flex-start;
+  font-family:inherit;
+}
+.btn-submit:hover{background:var(--gv);transform:translateY(-2px)}
+.contact-info{}
+.ci-title{
+  font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;
+  color:var(--text);margin-bottom:.8rem;
+}
+[dir="rtl"] .ci-title{font-family:'Noto Sans Arabic',sans-serif}
+.ci-desc{font-size:.9rem;color:var(--t2);line-height:1.75;margin-bottom:1.5rem}
+.ci-row{
+  display:flex;align-items:center;gap:.8rem;
+  font-size:.88rem;color:var(--t2);padding:.55rem 0;
+}
+.ci-ico{
+  width:34px;height:34px;border-radius:50%;
+  background:var(--gp);display:flex;align-items:center;
+  justify-content:center;font-size:.9rem;flex-shrink:0;
+}
+[data-theme="dark"] .ci-ico{background:rgba(62,168,67,.12)}
+.map-box{
+  margin-top:1.5rem;background:var(--bg3);
+  border-radius:1rem;height:190px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  border:1px solid var(--brd);gap:.5rem;
+}
+.map-box span:first-child{font-size:2.5rem;opacity:.35}
+.map-box p{font-size:.78rem;color:var(--t3)}
+.domains-list{
+  margin-top:1.5rem;display:flex;flex-direction:column;gap:.5rem;
+}
+.domain-item{
+  display:flex;align-items:center;gap:.6rem;
+  font-size:.82rem;color:var(--t2);padding:.5rem .8rem;
+  background:var(--bg3);border-radius:.6rem;border:1px solid var(--brd);
+}
+
+/* ════════════════════════════════════════
+   FOOTER
+════════════════════════════════════════ */
+footer{
+  background:var(--slate);padding:3.5rem 4rem 2rem;
+}
+[data-theme="dark"] footer{background:#000}
+.ft-top{
+  display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;
+  gap:3rem;padding-bottom:2.5rem;
+  border-bottom:1px solid rgba(255,255,255,.06);
+  margin-bottom:1.5rem;
+}
+.ft-brand{}
+.ft-logo{
+  font-family:'Syne',sans-serif;font-weight:800;
+  color:#fff;font-size:1.1rem;
+  display:flex;align-items:center;gap:.5rem;margin-bottom:.8rem;
+}
+.ft-logo .lmark{width:28px;height:28px;border-radius:6px;font-size:.75rem}
+.ft-tag{font-size:.82rem;color:rgba(255,255,255,.38);margin-bottom:.5rem;line-height:1.6;font-style:italic}
+.ft-sub{font-size:.7rem;color:rgba(255,255,255,.2);margin-bottom:1.2rem}
+.socials{display:flex;gap:.55rem}
+.soc{
+  width:33px;height:33px;border-radius:50%;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.75rem;font-weight:700;text-decoration:none;
+  color:rgba(255,255,255,.55);transition:background .2s,color .2s;
+}
+.soc:hover{background:var(--gv);color:#fff;border-color:var(--gv)}
+.ft-col h4{
+  font-family:'Syne',sans-serif;font-weight:700;
+  font-size:.75rem;color:rgba(255,255,255,.45);
+  letter-spacing:.1em;text-transform:uppercase;margin-bottom:1rem;
+}
+[dir="rtl"] .ft-col h4{font-family:'Noto Sans Arabic',sans-serif;letter-spacing:0}
+.ft-col ul{list-style:none}
+.ft-col li{margin-bottom:.5rem}
+.ft-col a{
+  font-size:.83rem;color:rgba(255,255,255,.38);
+  text-decoration:none;transition:color .2s;
+}
+.ft-col a:hover{color:var(--gl)}
+.ft-bot{
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:.8rem;
+}
+.ft-bot p{font-size:.73rem;color:rgba(255,255,255,.22)}
+
+/* ════════════════════════════════════════
+   FADE-UP ANIMATION
+════════════════════════════════════════ */
+.fu{opacity:0;transform:translateY(24px);transition:opacity .6s,transform .6s}
+.fu.vis{opacity:1;transform:translateY(0)}
+
+/* ════════════════════════════════════════
+   RESPONSIVE
+════════════════════════════════════════ */
+@media(max-width:1100px){
+  nav{padding:.9rem 1.5rem}
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  .sec{padding:4rem 1.5rem}
+  .hero{padding:7rem 1.5rem 8rem}
+  .hero-inner{grid-template-columns:1fr}
+  .robot-panel,.rp-stat-row{display:none}/* hide on mobile, hero is text only */
+  .hero-statsbar{position:relative;flex-wrap:wrap}
+  .hsb-item{flex:1 1 50%;border-bottom:1px solid rgba(255,255,255,.07)}
+  .prob-grid{grid-template-columns:1fr}
+  .loc-grid{grid-template-columns:1fr}
+  .cloud-sec{grid-template-columns:1fr;padding:4rem 1.5rem}
+  .vision-grid{grid-template-columns:1fr 1fr}
+  .cofound-inner{grid-template-columns:1fr}
+  .contact-sec{grid-template-columns:1fr;padding:4rem 1.5rem}
+  .ft-top{grid-template-columns:1fr 1fr}
+  .fg2{grid-template-columns:1fr}
+  .stat-box{flex:1 1 50%}
+}
+@media(max-width:640px){
+  .hero h1{font-size:2rem}
+  .vision-grid{grid-template-columns:1fr}
+  .ft-top{grid-template-columns:1fr}
+  .modules-grid{grid-template-columns:1fr 1fr}
+  .rs-modules{grid-template-columns:1fr}
+  .stat-box{flex:1 1 100%;border-right:none;border-bottom:1px solid rgba(255,255,255,.07)}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none !important;transition:none !important}
+  .fu{opacity:1;transform:none}
+}
+
+/* ════════════════════════════════════════
+   HIDDEN / SHOWN BY LANG
+════════════════════════════════════════ */
+[data-fr],[data-ar]{display:none}
+[data-lang="fr"] [data-fr]{display:revert}
+[data-lang="ar"] [data-ar]{display:revert}
+span[data-fr],span[data-ar]{display:none}
+[data-lang="fr"] span[data-fr]{display:inline}
+[data-lang="ar"] span[data-ar]{display:inline}
+li[data-fr],li[data-ar]{display:none}
+[data-lang="fr"] li[data-fr]{display:flex}
+[data-lang="ar"] li[data-ar]{display:flex}
+</style>
+</head>
+<body>
+
+<!-- ══════════ NAV ══════════ -->
+<nav>
+  <a class="logo" href="#top">
+    <div class="lmark">🌱</div>
+    GreenBot Solutions
+  </a>
+  <ul class="nav-links">
+    <li><a href="#robot"><span data-fr>Robot</span><span data-ar>الروبوت</span></a></li>
+    <li><a href="#location"><span data-fr>Location</span><span data-ar>الإيجار</span></a></li>
+    <li><a href="#iot"><span data-fr>Solutions IoT</span><span data-ar>حلول IoT</span></a></li>
+    <li><a href="#cloud"><span data-fr>Cloud</span><span data-ar>السحابة</span></a></li>
+    <li><a href="#vision"><span data-fr>Vision</span><span data-ar>الرؤية</span></a></li>
+    <li><a href="#contact"><span data-fr>Contact</span><span data-ar>اتصل بنا</span></a></li>
+  </ul>
+  <div class="nav-r">
+    <div class="ltoggle">
+      <button class="lbtn on" onclick="setLang('fr')">FR</button>
+      <button class="lbtn" onclick="setLang('ar')">AR</button>
+    </div>
+    <button class="tbtn" onclick="toggleTheme()">🌙</button>
+    <a href="#contact" class="ncta"><span data-fr>Démo</span><span data-ar>طلب عرض</span></a>
+    <button class="hamburger" onclick="toggleMenu()" id="hbg" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile drawer -->
+<div class="mobile-nav" id="mnav">
+  <a href="#robot" onclick="toggleMenu()"><span data-fr>🤖 Robot Agricole</span><span data-ar>🤖 الروبوت الزراعي</span></a>
+  <a href="#location" onclick="toggleMenu()"><span data-fr>📦 Location & Assistance</span><span data-ar>📦 الإيجار والدعم</span></a>
+  <a href="#iot" onclick="toggleMenu()"><span data-fr>📡 Solutions IoT</span><span data-ar>📡 حلول IoT</span></a>
+  <a href="#cloud" onclick="toggleMenu()"><span data-fr>☁️ GreenBot Cloud</span><span data-ar>☁️ السحابة</span></a>
+  <a href="#vision" onclick="toggleMenu()"><span data-fr>🌾 Vision SmartFarm</span><span data-ar>🌾 الرؤية</span></a>
+  <a href="#cofound" onclick="toggleMenu()"><span data-fr>🤝 Co-Fondateur</span><span data-ar>🤝 شريك مؤسس</span></a>
+  <a href="#contact" onclick="toggleMenu()"><span data-fr>✉️ Contact</span><span data-ar>✉️ اتصل بنا</span></a>
+</div>
+
+<!-- ══════════ HERO — ROBOT EN PREMIER ══════════ -->
+<section class="hero" id="top">
+  <div class="hero-bg-grid"></div>
+  <div class="hero-glow1"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-badge">
+        <div class="ldot"></div>
+        <span data-fr>Robot Agricole Modulaire Électrique — R-IOTSYS</span>
+        <span data-ar>روبوت زراعي معياري كهربائي — R-IOTSYS</span>
+      </div>
+      <h1 data-fr><em>GreenBot</em> — le robot qui travaille à votre place.</h1>
+      <h1 data-ar><em>GreenBot</em> — الروبوت الذي يعمل بدلاً عنك.</h1>
+      <p class="hero-sub" data-fr>Désherbage, irrigation, pulvérisation, analyse du sol : le robot agricole modulaire électrique GreenBot automatise les tâches pénibles de votre exploitation, surveillée et pilotée depuis votre smartphone.</p>
+      <p class="hero-sub" data-ar>إزالة الأعشاب، الري، الرش، تحليل التربة — الروبوت الزراعي الكهربائي المعياري يؤتمت المهام الشاقة في مزرعتك، مع مراقبة وتحكم كامل من هاتفك.</p>
+      <div class="hero-btns">
+        <a href="#robot" class="btn-white"><span data-fr>Découvrir le robot</span><span data-ar>اكتشف الروبوت</span></a>
+        <a href="#contact" class="btn-outline"><span data-fr>Demander une démo</span><span data-ar>اطلب عرضاً تجريبياً</span></a>
+      </div>
+    </div>
+    <div class="robot-panel">
+      <div class="rp-header">
+        <div class="rp-title" data-fr>Robot GreenBot Pro</div>
+        <div class="rp-title" data-ar>روبوت GreenBot Pro</div>
+        <div class="rp-badge">Électrique ⚡</div>
+      </div>
+      <span class="robot-main-icon">🤖</span>
+      <div class="module-chips">
+        <div class="mc"><div class="mc-dot"></div><span data-fr>🌿 Désherbage</span><span data-ar>🌿 إزالة الأعشاب</span></div>
+        <div class="mc"><div class="mc-dot"></div><span data-fr>💧 Irrigation</span><span data-ar>💧 الري</span></div>
+        <div class="mc"><div class="mc-dot"></div><span data-fr>🧪 Pulvérisation</span><span data-ar>🧪 الرش</span></div>
+        <div class="mc"><div class="mc-dot"></div><span data-fr>🔬 Sol & Analyse</span><span data-ar>🔬 تحليل التربة</span></div>
+      </div>
+      <div class="rp-stat-row">
+        <div class="rp-stat"><div class="rps-n">0</div><div class="rps-l" data-fr>Émission CO₂</div><div class="rps-l" data-ar>انبعاثات CO₂</div></div>
+        <div class="rp-stat"><div class="rps-n">24/7</div><div class="rps-l" data-fr>Autonome</div><div class="rps-l" data-ar>مستقل</div></div>
+        <div class="rp-stat"><div class="rps-n">4</div><div class="rps-l" data-fr>Modules</div><div class="rps-l" data-ar>وحدات</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-statsbar">
+    <div class="hsb-item"><div class="hsb-n">4</div><div class="hsb-l" data-fr>Modules robotiques</div><div class="hsb-l" data-ar>وحدات معيارية</div></div>
+    <div class="hsb-item"><div class="hsb-n">100+</div><div class="hsb-l" data-fr>Exploitations connectées</div><div class="hsb-l" data-ar>منشأة متصلة</div></div>
+    <div class="hsb-item"><div class="hsb-n">1000+</div><div class="hsb-l" data-fr>Capteurs IoT actifs</div><div class="hsb-l" data-ar>مستشعر نشط</div></div>
+    <div class="hsb-item"><div class="hsb-n">24/7</div><div class="hsb-l" data-fr>Surveillance continue</div><div class="hsb-l" data-ar>مراقبة مستمرة</div></div>
+    <div class="hsb-item"><div class="hsb-n">0</div><div class="hsb-l" data-fr>Émission CO₂</div><div class="hsb-l" data-ar>انبعاثات</div></div>
+  </div>
+</section>
+
+<!-- Terrain divider -->
+<div class="tdiv" style="background:var(--bg2)">
+  <svg viewBox="0 0 1440 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,35 C200,8 400,62 600,35 C800,8 1000,55 1200,30 C1320,15 1400,48 1440,28 L1440,0 L0,0 Z" fill="#267A2A"/>
+  </svg>
+</div>
+
+<!-- ══════════ SECTION 1 — PROBLÈMES + ROBOT ══════════ -->
+<section class="prob-sec sec" id="robot">
+  <div class="eyebrow" data-fr>Pourquoi GreenBot ?</div>
+  <div class="eyebrow" data-ar>لماذا GreenBot؟</div>
+  <h2 class="stitle" data-fr>Les défis de l'agriculteur moderne, résolus.</h2>
+  <h2 class="stitle" data-ar>تحديات الفلاح الحديث، محلولة.</h2>
+  <div class="prob-grid">
+    <!-- Problèmes -->
+    <div>
+      <p class="sdesc" data-fr>L'agriculture tunisienne fait face à deux réalités difficiles. GreenBot apporte une réponse concrète à chacune.</p>
+      <p class="sdesc" data-ar>تواجه الزراعة التونسية تحديين أساسيين. GreenBot يقدم حلاً ملموساً لكل واحد منهما.</p>
+      <div class="prob-cards">
+        <div class="pcard fu">
+          <div class="pcard-ico">👷</div>
+          <div>
+            <h4 data-fr>Manque de Main-d'Œuvre</h4>
+            <h4 data-ar>نقص اليد العاملة</h4>
+            <p data-fr>Difficile de recruter des travailleurs qualifiés et disponibles au bon moment. Le robot travaille sans relâche, sans congé, sans salaire.</p>
+            <p data-ar>صعوبة إيجاد عمال مؤهلين ومتاحين في الوقت المناسب. الروبوت يعمل بلا توقف، بلا إجازة، بلا راتب.</p>
+          </div>
+        </div>
+        <div class="pcard fu">
+          <div class="pcard-ico">📈</div>
+          <div>
+            <h4 data-fr>Coûts de Production Élevés</h4>
+            <h4 data-ar>ارتفاع تكاليف الإنتاج</h4>
+            <p data-fr>Augmentation constante des dépenses : main-d'œuvre, carburant, engrais. Le robot électrique réduit ces coûts durablement.</p>
+            <p data-ar>ارتفاع مستمر في التكاليف: يد عاملة، وقود، أسمدة. الروبوت الكهربائي يخفض هذه التكاليف بشكل دائم.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Robot showcase -->
+    <div class="robot-showcase fu">
+      <div class="rs-label" data-fr>LA SOLUTION</div>
+      <div class="rs-label" data-ar>الحل</div>
+      <div class="rs-title" data-fr>Robot Agricole Modulaire Électrique</div>
+      <div class="rs-title" data-ar>روبوت زراعي معياري كهربائي</div>
+      <p class="rs-sub" data-fr>Un robot autonome qui adapte ses modules selon vos besoins. Zéro émission, maximum d'efficacité.</p>
+      <p class="rs-sub" data-ar>روبوت مستقل يكيّف وحداته حسب احتياجاتك. صفر انبعاثات، أقصى كفاءة.</p>
+      <span class="rs-big-icon">🤖</span>
+      <div class="rs-modules">
+        <div class="rsm">
+          <div class="rsm-ico">🌿</div>
+          <div class="rsm-text">
+            <h5 data-fr>Désherbage</h5><h5 data-ar>إزالة الأعشاب</h5>
+            <p data-fr>Précis, sans herbicide</p><p data-ar>دقيق، بدون مبيدات</p>
+          </div>
+        </div>
+        <div class="rsm">
+          <div class="rsm-ico">💧</div>
+          <div class="rsm-text">
+            <h5 data-fr>Irrigation</h5><h5 data-ar>الري</h5>
+            <p data-fr>Ciblée, économique</p><p data-ar>مستهدف، اقتصادي</p>
+          </div>
+        </div>
+        <div class="rsm">
+          <div class="rsm-ico">🧪</div>
+          <div class="rsm-text">
+            <h5 data-fr>Pulvérisation</h5><h5 data-ar>الرش</h5>
+            <p data-fr>Application précise</p><p data-ar>تطبيق دقيق</p>
+          </div>
+        </div>
+        <div class="rsm">
+          <div class="rsm-ico">🔬</div>
+          <div class="rsm-text">
+            <h5 data-fr>Analyse du Sol</h5><h5 data-ar>تحليل التربة</h5>
+            <p data-fr>pH, humidité, nutriments</p><p data-ar>حموضة، رطوبة، عناصر</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ SECTION 2 — LOCATION & ASSISTANCE ══════════ -->
+<section class="loc-sec sec" id="location">
+  <div class="eyebrow" data-fr>Modèle d'accès</div>
+  <div class="eyebrow" data-ar>نموذج الوصول</div>
+  <h2 class="stitle" data-fr>Location flexible & assistance complète.</h2>
+  <h2 class="stitle" data-ar>إيجار مرن ودعم شامل.</h2>
+  <p class="sdesc" data-fr>Pas besoin d'un gros investissement pour bénéficier du robot GreenBot. Choisissez la formule qui correspond à votre exploitation.</p>
+  <p class="sdesc" data-ar>لا حاجة لاستثمار كبير للاستفادة من روبوت GreenBot. اختر الصيغة التي تناسب مزرعتك.</p>
+  <div class="loc-grid">
+    <div class="loc-card fu">
+      <span class="lc-ico">📅</span>
+      <h3 data-fr>Location Flexible</h3>
+      <h3 data-ar>إيجار مرن</h3>
+      <p data-fr>Accédez au robot sans gros investissement initial. Payez selon vos saisons et vos besoins réels. Formules journalières, hebdomadaires ou mensuelles disponibles.</p>
+      <p data-ar>استخدم الروبوت بدون استثمار أولي كبير. ادفع حسب مواسمك واحتياجاتك الفعلية. صيغ يومية وأسبوعية وشهرية متاحة.</p>
+      <span class="loc-tag" data-fr>Sans engagement long terme</span>
+      <span class="loc-tag" data-ar>بدون التزام طويل الأمد</span>
+    </div>
+    <div class="loc-card fu">
+      <span class="lc-ico">🛠️</span>
+      <h3 data-fr>Support Technique Local</h3>
+      <h3 data-ar>دعم تقني محلي</h3>
+      <p data-fr>Notre équipe tunisienne assure l'installation, la formation, la maintenance et le suivi de votre robot. Vous n'êtes jamais seul.</p>
+      <p data-ar>فريقنا التونسي يضمن التركيب والتدريب والصيانة ومتابعة روبوتك. لن تكون أبداً وحدك.</p>
+      <span class="loc-tag" data-fr>Réponse sous 24h</span>
+      <span class="loc-tag" data-ar>استجابة خلال 24 ساعة</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ SECTION 3 — IoT SOLUTIONS ══════════ -->
+<section class="iot-sec sec" id="iot">
+  <div class="eyebrow" data-fr>Solutions IoT agricoles</div>
+  <div class="eyebrow" data-ar>حلول إنترنت الأشياء الزراعية</div>
+  <h2 class="stitle" data-fr>Chaque bâtiment agricole, connecté et surveillé.</h2>
+  <h2 class="stitle" data-ar>كل منشأة زراعية، متصلة ومراقبة.</h2>
+  <p class="sdesc" data-fr>En complément du robot, GreenBot équipe vos bâtiments de capteurs intelligents pour une surveillance totale 24h/24.</p>
+  <p class="sdesc" data-ar>بالإضافة إلى الروبوت، تجهّز GreenBot منشآتك بمستشعرات ذكية لمراقبة شاملة على مدار الساعة.</p>
+  <div class="iot-grid">
+    <div class="iot-card fu">
+      <span class="iot-icon">🐔</span>
+      <h3 data-fr>Smart Poultry</h3>
+      <h3 data-ar>الدواجن الذكية</h3>
+      <ul class="iot-feats">
+        <li data-fr>Température & humidité en temps réel</li><li data-ar>الحرارة والرطوبة في الوقت الفعلي</li>
+        <li data-fr>Contrôle ventilation & éclairage</li><li data-ar>التحكم في التهوية والإضاءة</li>
+        <li data-fr>Suivi eau & alimentation</li><li data-ar>متابعة الماء والعلف</li>
+        <li data-fr>Alertes automatiques SMS</li><li data-ar>تنبيهات SMS فورية</li>
+      </ul>
+    </div>
+    <div class="iot-card fu">
+      <span class="iot-icon">🐑</span>
+      <h3 data-fr>Smart Sheep</h3>
+      <h3 data-ar>الأغنام الذكية</h3>
+      <ul class="iot-feats">
+        <li data-fr>Surveillance environnementale</li><li data-ar>مراقبة البيئة</li>
+        <li data-fr>Suivi de l'alimentation</li><li data-ar>متابعة التغذية</li>
+        <li data-fr>Contrôle des équipements</li><li data-ar>التحكم في المعدات</li>
+        <li data-fr>Analyse & rapports</li><li data-ar>تحليل وتقارير</li>
+      </ul>
+    </div>
+    <div class="iot-card fu">
+      <span class="iot-icon">🐄</span>
+      <h3 data-fr>Smart Cattle</h3>
+      <h3 data-ar>الأبقار الذكية</h3>
+      <ul class="iot-feats">
+        <li data-fr>Contrôle climatique des étables</li><li data-ar>مراقبة مناخ الإسطبلات</li>
+        <li data-fr>Gestion de l'eau</li><li data-ar>إدارة المياه</li>
+        <li data-fr>Surveillance des animaux</li><li data-ar>متابعة الحيوانات</li>
+        <li data-fr>Historique & performances</li><li data-ar>السجل والأداء</li>
+      </ul>
+    </div>
+    <div class="iot-card fu">
+      <span class="iot-icon">🌾</span>
+      <h3 data-fr>Smart Storage</h3>
+      <h3 data-ar>التخزين الذكي</h3>
+      <ul class="iot-feats">
+        <li data-fr>Température & humidité tunnel</li><li data-ar>الحرارة والرطوبة في النفق</li>
+        <li data-fr>Détection incendie & intrusion</li><li data-ar>كشف الحرائق والسرقة</li>
+        <li data-fr>Caméras de surveillance</li><li data-ar>كاميرات مراقبة</li>
+        <li data-fr>Alertes SMS instantanées</li><li data-ar>تنبيهات SMS فورية</li>
+      </ul>
+    </div>
+    <div class="iot-card fu">
+      <span class="iot-icon">🌱</span>
+      <h3 data-fr>Smart Irrigation</h3>
+      <h3 data-ar>الري الذكي</h3>
+      <ul class="iot-feats">
+        <li data-fr>Contrôle pompes & électrovannes</li><li data-ar>التحكم في المضخات والصمامات</li>
+        <li data-fr>Surveillance niveau d'eau</li><li data-ar>مراقبة مستوى المياه</li>
+        <li data-fr>Pilotage à distance</li><li data-ar>التحكم عن بعد</li>
+        <li data-fr>Alertes consommation</li><li data-ar>تنبيهات الاستهلاك</li>
+      </ul>
+    </div>
+    <div class="iot-card fu">
+      <span class="iot-icon">☀️</span>
+      <h3 data-fr>Smart Energy</h3>
+      <h3 data-ar>الطاقة الذكية</h3>
+      <ul class="iot-feats">
+        <li data-fr>Gestion énergie solaire</li><li data-ar>إدارة الطاقة الشمسية</li>
+        <li data-fr>Surveillance batteries</li><li data-ar>مراقبة البطاريات</li>
+        <li data-fr>Contrôle consommation</li><li data-ar>التحكم في الاستهلاك</li>
+        <li data-fr>Rapports & statistiques</li><li data-ar>تقارير وإحصائيات</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ SECTION 4 — CLOUD ══════════ -->
+<section class="cloud-sec" id="cloud">
+  <div class="cloud-text">
+    <div class="eyebrow" data-fr>GreenBot Cloud</div>
+    <div class="eyebrow" data-ar>السحابة</div>
+    <h2 class="stitle" data-fr>Toute votre exploitation dans une seule interface.</h2>
+    <h2 class="stitle" data-ar>كل مزرعتك في واجهة واحدة.</h2>
+    <p class="sdesc" data-fr>Robot, capteurs, bâtiments, énergie : tout est centralisé sur la plateforme GreenBot Cloud. Accessible 24h/24 depuis n'importe quel appareil.</p>
+    <p class="sdesc" data-ar>الروبوت والمستشعرات والمباني والطاقة — كل شيء مركزي على منصة GreenBot Cloud. متاحة 24 ساعة من أي جهاز.</p>
+    <div class="access-chips">
+      <div class="chip">📱 <span data-fr>Smartphone</span><span data-ar>هاتف</span></div>
+      <div class="chip">💻 <span data-fr>Ordinateur</span><span data-ar>كمبيوتر</span></div>
+      <div class="chip">🖥️ <span data-fr>Tablette</span><span data-ar>لوحة</span></div>
+    </div>
+  </div>
+  <div class="dash">
+    <div class="dash-tb">
+      <div class="dtb-dot" style="background:#FF5F57"></div>
+      <div class="dtb-dot" style="background:#FEBC2E"></div>
+      <div class="dtb-dot" style="background:#28C840"></div>
+      <div class="dtb-url">cloud.greenbot.tn — Tableau de bord</div>
+    </div>
+    <div class="dash-row">
+      <div class="dw"><div class="dw-l">ROBOT</div><div class="dw-v ok">🤖 Actif</div></div>
+      <div class="dw"><div class="dw-l">POULAILLER T°</div><div class="dw-v ok">22.4°C</div></div>
+      <div class="dw"><div class="dw-l">HUMIDITÉ</div><div class="dw-v">68%</div></div>
+    </div>
+    <div class="dash-row" style="margin-bottom:.6rem">
+      <div class="dw"><div class="dw-l">STOCKAGE T°</div><div class="dw-v warn">28.1°C</div></div>
+      <div class="dw"><div class="dw-l">ÉNERGIE</div><div class="dw-v ok">4.2 kW</div></div>
+      <div class="dw"><div class="dw-l">CAPTEURS</div><div class="dw-v">14/14</div></div>
+    </div>
+    <div class="dash-chart">
+      <div class="chart-lbl">CONSOMMATION EAU — 7 JOURS (m³)</div>
+      <div class="bars">
+        <div class="bar" style="height:38%"></div>
+        <div class="bar" style="height:55%"></div>
+        <div class="bar" style="height:42%"></div>
+        <div class="bar hi" style="height:80%"></div>
+        <div class="bar" style="height:61%"></div>
+        <div class="bar" style="height:44%"></div>
+        <div class="bar hi" style="height:70%"></div>
+      </div>
+    </div>
+    <div class="dash-alerts">
+      <div class="al-row"><div class="al-dot g"></div><div class="al-txt">🤖 Robot — Module irrigation actif</div><div class="al-t">10:12</div></div>
+      <div class="al-row"><div class="al-dot a"></div><div class="al-txt">🌾 Stockage B — Température élevée (28°C)</div><div class="al-t">09:47</div></div>
+      <div class="al-row"><div class="al-dot g"></div><div class="al-txt">🐔 Poulailler — Ventilation OK</div><div class="al-t">08:30</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Divider -->
+<div class="tdiv" style="background:var(--gd)">
+  <svg viewBox="0 0 1440 50" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,25 C300,5 600,45 900,20 C1100,5 1300,38 1440,18 L1440,0 L0,0 Z" fill="var(--bg3)"/>
+  </svg>
+</div>
+
+<!-- ══════════ SECTION 5 — VISION SMARTFARM ══════════ -->
+<section class="vision-sec" id="vision">
+  <div class="eyebrow" data-fr>Vision 2025-2030</div>
+  <div class="eyebrow" data-ar>الرؤية 2025-2030</div>
+  <h2 class="stitle" data-fr>SmartFarm Cloud — La ferme du futur, aujourd'hui.</h2>
+  <h2 class="stitle" data-ar>SmartFarm Cloud — مزرعة المستقبل، اليوم.</h2>
+  <p class="sdesc" data-fr>Une vision intégrée : le robot GreenBot, les capteurs IoT et la plateforme Cloud forment un écosystème agricole intelligent et autonome.</p>
+  <p class="sdesc" data-ar>رؤية متكاملة: روبوت GreenBot ومستشعرات IoT ومنصة السحابة تشكّل نظاماً زراعياً ذكياً ومستقلاً.</p>
+  <div class="vision-grid">
+    <div class="vision-card fu">
+      <span class="vc-icon">📡</span>
+      <h4 data-fr>Suivi à Distance</h4>
+      <h4 data-ar>تتبع عن بعد</h4>
+      <p data-fr>Visualisez et contrôlez votre exploitation en temps réel depuis n'importe où dans le monde.</p>
+      <p data-ar>تابع وتحكم في مزرعتك في الوقت الفعلي من أي مكان في العالم.</p>
+    </div>
+    <div class="vision-card fu">
+      <span class="vc-icon">📊</span>
+      <h4 data-fr>Données & Intelligence</h4>
+      <h4 data-ar>البيانات والذكاء</h4>
+      <p data-fr>Analyse automatique des données pour des décisions agricoles plus intelligentes et rentables.</p>
+      <p data-ar>تحليل تلقائي للبيانات لاتخاذ قرارات زراعية أذكى وأكثر ربحية.</p>
+    </div>
+    <div class="vision-card fu">
+      <span class="vc-icon">🌾</span>
+      <h4 data-fr>Optimisation des Cultures</h4>
+      <h4 data-ar>تحسين المحاصيل</h4>
+      <p data-fr>Recommandations personnalisées pour maximiser vos rendements et réduire les pertes.</p>
+      <p data-ar>توصيات مخصصة لتعظيم إنتاجيتك وتقليل الخسائر.</p>
+    </div>
+  </div>
+  <div class="cloud-flow fu">
+    <div class="cf-node"><span class="cf-ico">🤖</span><span data-fr>Robot</span><span data-ar>الروبوت</span></div>
+    <div class="cf-arrow">→</div>
+    <div class="cf-node"><span class="cf-ico">📡</span><span data-fr>Capteurs IoT</span><span data-ar>مستشعرات IoT</span></div>
+    <div class="cf-arrow">→</div>
+    <div class="cf-node"><span class="cf-ico">☁️</span><span data-fr>GreenBot Cloud</span><span data-ar>السحابة</span></div>
+    <div class="cf-arrow">→</div>
+    <div class="cf-node"><span class="cf-ico">📱</span><span data-fr>Votre smartphone</span><span data-ar>هاتفك</span></div>
+    <div class="cf-arrow">→</div>
+    <div class="cf-node"><span class="cf-ico">🌱</span><span data-fr>Exploitation optimisée</span><span data-ar>مزرعة محسّنة</span></div>
+  </div>
+</section>
+
+<!-- ══════════ SECTION 6 — POURQUOI GREENBOT ══════════ -->
+<section class="why-sec sec" id="why">
+  <div style="text-align:center">
+    <div class="eyebrow" data-fr>Nos avantages</div>
+    <div class="eyebrow" data-ar>مزاياتنا</div>
+    <h2 class="stitle" data-fr>Conçu pour les agriculteurs tunisiens.</h2>
+    <h2 class="stitle" data-ar>صُمِّم للفلاحين التونسيين.</h2>
+  </div>
+  <div class="why-grid" style="margin-top:2.5rem">
+    <div class="why-card fu"><div class="wico">🤖</div><h4 data-fr>Automatisation complète</h4><h4 data-ar>أتمتة كاملة</h4><p data-fr>Le robot prend en charge les tâches répétitives et pénibles à votre place.</p><p data-ar>الروبوت يتولى المهام المتكررة والشاقة بدلاً عنك.</p></div>
+    <div class="why-card fu"><div class="wico">👁️</div><h4 data-fr>Surveillance 24h/24</h4><h4 data-ar>مراقبة مستمرة</h4><p data-fr>Vos bâtiments et équipements surveillés en permanence, même la nuit.</p><p data-ar>منشآتك ومعداتك مراقبة باستمرار، حتى ليلاً.</p></div>
+    <div class="why-card fu"><div class="wico">💧</div><h4 data-fr>Économie d'eau & énergie</h4><h4 data-ar>توفير الماء والطاقة</h4><p data-fr>Irrigation et énergie pilotées à la précision pour réduire les gaspillages.</p><p data-ar>ري وطاقة مُوجَّهان بدقة لتقليل الهدر.</p></div>
+    <div class="why-card fu"><div class="wico">📉</div><h4 data-fr>Réduction des pertes</h4><h4 data-ar>تقليل الخسائر</h4><p data-fr>Détection précoce des anomalies pour protéger vos animaux et vos récoltes.</p><p data-ar>كشف مبكر للمشكلات لحماية حيواناتك ومحاصيلك.</p></div>
+    <div class="why-card fu"><div class="wico">📱</div><h4 data-fr>Contrôle à distance</h4><h4 data-ar>تحكم عن بعد</h4><p data-fr>Gérez tout depuis votre smartphone, où que vous soyez.</p><p data-ar>سيّر كل شيء من هاتفك أينما كنت.</p></div>
+    <div class="why-card fu"><div class="wico">🔧</div><h4 data-fr>Installation rapide</h4><h4 data-ar>تركيب سريع</h4><p data-fr>Matériel robuste, déploiement en quelques heures, support local assuré.</p><p data-ar>أجهزة متينة، نشر في ساعات، دعم محلي مضمون.</p></div>
+    <div class="why-card fu"><div class="wico">⚡</div><h4 data-fr>100% Électrique</h4><h4 data-ar>100% كهربائي</h4><p data-fr>Robot électrique zéro émission, compatible énergie solaire.</p><p data-ar>روبوت كهربائي صفر انبعاثات، متوافق مع الطاقة الشمسية.</p></div>
+    <div class="why-card fu"><div class="wico">🌍</div><h4 data-fr>Adapté à la Tunisie</h4><h4 data-ar>مكيّف للتونس</h4><p data-fr>Solutions pensées pour le terrain, le climat et la réalité agricole tunisienne.</p><p data-ar>حلول مصمّمة للطبيعة والمناخ والواقع الزراعي التونسي.</p></div>
+  </div>
+</section>
+
+<!-- ══════════ STATS BAR ══════════ -->
+<div class="stats-sec">
+  <div class="stat-box"><div class="sbn">4</div><div class="sbl" data-fr>MODULES ROBOT</div><div class="sbl" data-ar>وحدات الروبوت</div></div>
+  <div class="stat-box"><div class="sbn">100+</div><div class="sbl" data-fr>EXPLOITATIONS</div><div class="sbl" data-ar>منشأة</div></div>
+  <div class="stat-box"><div class="sbn">1000+</div><div class="sbl" data-fr>CAPTEURS IoT</div><div class="sbl" data-ar>مستشعر IoT</div></div>
+  <div class="stat-box"><div class="sbn">50+</div><div class="sbl" data-fr>TUNNELS</div><div class="sbl" data-ar>نفق زراعي</div></div>
+  <div class="stat-box"><div class="sbn">24/7</div><div class="sbl" data-fr>MONITORING</div><div class="sbl" data-ar>مراقبة</div></div>
+</div>
+
+<!-- ══════════ SECTION 7 — CO-FONDATEUR ══════════ -->
+<section class="cofound-sec" id="cofound">
+  <div class="eyebrow" data-fr>Opportunité</div>
+  <div class="eyebrow" data-ar>فرصة</div>
+  <h2 class="stitle" data-fr>Rejoignez l'aventure GreenBot.</h2>
+  <h2 class="stitle" data-ar>انضم إلى مغامرة GreenBot.</h2>
+  <p class="sdesc" data-fr>Nous cherchons un co-fondateur passionné pour accélérer le développement de GreenBot Solutions.</p>
+  <p class="sdesc" data-ar>نبحث عن شريك مؤسّس متحمس لتسريع تطوير GreenBot Solutions.</p>
+  <div class="cofound-inner">
+    <div>
+      <h3 style="font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;color:var(--t2);margin-bottom:1rem;letter-spacing:.05em;text-transform:uppercase" data-fr>Profils recherchés</h3>
+      <h3 style="font-family:'Noto Sans Arabic',sans-serif;font-weight:700;font-size:1rem;color:var(--t2);margin-bottom:1rem" data-ar>الملفات المطلوبة</h3>
+      <div class="cf-profiles">
+        <div class="cf-profile fu">
+          <div class="cf-profile-ico">⚙️</div>
+          <div>
+            <h4 data-fr>Profil Technique</h4>
+            <h4 data-ar>الملف التقني</h4>
+            <p data-fr>Robotique, IoT, systèmes embarqués, intelligence artificielle agricole.</p>
+            <p data-ar>روبوتيك، إنترنت الأشياء، أنظمة مدمجة، ذكاء اصطناعي زراعي.</p>
+          </div>
+        </div>
+        <div class="cf-profile fu">
+          <div class="cf-profile-ico">💼</div>
+          <div>
+            <h4 data-fr>Profil Business</h4>
+            <h4 data-ar>الملف التجاري</h4>
+            <p data-fr>Stratégie, développement commercial, marketing agricole, levée de fonds.</p>
+            <p data-ar>استراتيجية، تطوير تجاري، تسويق زراعي، جمع التمويل.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cf-cta-col">
+      <h3 class="stitle" data-fr>🤝 Construisons l'agriculture tunisienne de demain ensemble.</h3>
+      <h3 class="stitle" data-ar>🤝 لنبني زراعة تونس الغد معاً.</h3>
+      <p class="sdesc" data-fr>Une startup tunisienne avec un produit concret, une technologie réelle et une vision d'impact.</p>
+      <p class="sdesc" data-ar>شركة ناشئة تونسية بمنتج ملموس، تقنية حقيقية، ورؤية أثر.</p>
+      <a href="#contact" class="btn-gold">
+        <span data-fr>Rejoindre l'aventure GreenBot !</span>
+        <span data-ar>!انضم إلى مغامرة GreenBot</span>
+      </a>
+    </div>
+    <div>
+      <h3 style="font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;color:var(--t2);margin-bottom:1rem;letter-spacing:.05em;text-transform:uppercase" data-fr>Ce que vous rejoignez</h3>
+      <h3 style="font-family:'Noto Sans Arabic',sans-serif;font-weight:700;font-size:1rem;color:var(--t2);margin-bottom:1rem" data-ar>ما ستنضم إليه</h3>
+      <div style="display:flex;flex-direction:column;gap:.8rem">
+        <div style="display:flex;gap:.7rem;align-items:flex-start;padding:.8rem;background:var(--bg3);border-radius:.8rem;border:1px solid var(--brd)">
+          <span>🌱</span><span style="font-size:.84rem;color:var(--t2)" data-fr>Technologie IoT + Robot agricole déjà opérationnelle</span>
+          <span style="font-size:.84rem;color:var(--t2)" data-ar>تقنية IoT + روبوت زراعي قيد التشغيل</span>
+        </div>
+        <div style="display:flex;gap:.7rem;align-items:flex-start;padding:.8rem;background:var(--bg3);border-radius:.8rem;border:1px solid var(--brd)">
+          <span>🏢</span><span style="font-size:.84rem;color:var(--t2)" data-fr>Soutien de R-IOTSYS, entreprise établie</span>
+          <span style="font-size:.84rem;color:var(--t2)" data-ar>دعم R-IOTSYS، شركة راسخة</span>
+        </div>
+        <div style="display:flex;gap:.7rem;align-items:flex-start;padding:.8rem;background:var(--bg3);border-radius:.8rem;border:1px solid var(--brd)">
+          <span>📈</span><span style="font-size:.84rem;color:var(--t2)" data-fr>Marché agricole tunisien en pleine transformation</span>
+          <span style="font-size:.84rem;color:var(--t2)" data-ar>السوق الزراعية التونسية في تحول سريع</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ SECTION 8 — CONTACT ══════════ -->
+<section class="contact-sec" id="contact">
+  <div>
+    <div class="eyebrow" data-fr>Contactez-nous</div>
+    <div class="eyebrow" data-ar>تواصل معنا</div>
+    <h2 class="stitle" data-fr>Parlons de votre projet.</h2>
+    <h2 class="stitle" data-ar>دعنا نتحدث عن مشروعك.</h2>
+    <p class="sdesc" data-fr>Robot agricole, solutions IoT ou co-fondateur — écrivez-nous, nous répondons sous 24h.</p>
+    <p class="sdesc" data-ar>روبوت زراعي أو حلول IoT أو شريك مؤسس — اكتب لنا، نرد خلال 24 ساعة.</p>
+    <div class="contact-form">
+      <div class="fg2">
+        <div class="ff">
+          <label data-fr>Nom *</label><label data-ar>الاسم *</label>
+          <input type="text" placeholder="Ahmed Ben Ali">
+        </div>
+        <div class="ff">
+          <label data-fr>Société</label><label data-ar>المؤسسة</label>
+          <input type="text" placeholder="Ferme / Société">
+        </div>
+      </div>
+      <div class="fg2">
+        <div class="ff">
+          <label data-fr>Téléphone</label><label data-ar>الهاتف</label>
+          <input type="tel" placeholder="+216 XX XXX XXX">
+        </div>
+        <div class="ff">
+          <label>Email *</label>
+          <input type="email" placeholder="email@exemple.tn">
+        </div>
+      </div>
+      <div class="ff">
+        <label data-fr>Objet</label><label data-ar>الموضوع</label>
+        <select>
+          <option data-fr>🤖 Robot agricole — démo</option>
+          <option data-fr>📡 Solutions IoT</option>
+          <option data-fr>📦 Location du robot</option>
+          <option data-fr>🤝 Co-fondateur</option>
+          <option data-fr>Autre</option>
+          <option data-ar>🤖 روبوت زراعي — عرض</option>
+          <option data-ar>📡 حلول IoT</option>
+          <option data-ar>📦 إيجار الروبوت</option>
+          <option data-ar>🤝 شريك مؤسس</option>
+          <option data-ar>أخرى</option>
+        </select>
+      </div>
+      <div class="ff">
+        <label data-fr>Message</label><label data-ar>الرسالة</label>
+        <textarea data-fr placeholder="Décrivez votre exploitation et vos besoins..."></textarea>
+        <textarea data-ar placeholder="صف مزرعتك واحتياجاتك..."></textarea>
+      </div>
+      <button class="btn-submit" type="button">
+        <span data-fr>Envoyer le message ✉️</span>
+        <span data-ar>✉️ إرسال الرسالة</span>
+      </button>
+    </div>
+  </div>
+  <div class="contact-info">
+    <div class="ci-title" data-fr>GreenBot Solutions</div>
+    <div class="ci-title" data-ar>GreenBot Solutions</div>
+    <p class="ci-desc" data-fr>Une solution développée par <strong>R-IOTSYS</strong>, spécialisée dans les systèmes IoT et la robotique pour l'agriculture tunisienne.</p>
+    <p class="ci-desc" data-ar>حل طوّرته <strong>R-IOTSYS</strong>، المتخصصة في أنظمة IoT والروبوتيك للزراعة التونسية.</p>
+    <div class="ci-row"><div class="ci-ico">🌐</div>greenbot.r-iotsys.tn</div>
+    <div class="ci-row"><div class="ci-ico">📧</div>contact@r-iotsys.tn</div>
+    <div class="ci-row"><div class="ci-ico">📞</div>+216 XX XXX XXX</div>
+    <div class="ci-row"><div class="ci-ico">📍</div><span data-fr>Tunisie</span><span data-ar>تونس</span></div>
+    <div class="map-box">
+      <span>🗺️</span>
+      <p data-fr>Carte Google Maps — Tunisie</p>
+      <p data-ar>خريطة جوجل — تونس</p>
+    </div>
+    <div class="domains-list">
+      <div class="domain-item">🔗 greenbot.r-iotsys.tn</div>
+      <div class="domain-item">🔗 greenbot.tn</div>
+      <div class="domain-item">🔗 smartfarm.r-iotsys.tn</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer>
+  <div class="ft-top">
+    <div class="ft-brand">
+      <div class="ft-logo">
+        <div class="lmark">🌱</div>
+        GreenBot Solutions
+      </div>
+      <p class="ft-tag" data-fr>« L'Agriculture Intelligente Commence Ici. »</p>
+      <p class="ft-tag" data-ar>« الزراعة الذكية تبدأ من هنا. »</p>
+      <p class="ft-sub" data-fr>Une solution développée par R-IOTSYS</p>
+      <p class="ft-sub" data-ar>حل من تطوير R-IOTSYS</p>
+      <div class="socials" style="margin-top:1rem">
+        <a class="soc" href="#" title="Facebook">f</a>
+        <a class="soc" href="#" title="LinkedIn">in</a>
+        <a class="soc" href="#" title="YouTube">▶</a>
+        <a class="soc" href="#" title="TikTok">♪</a>
+      </div>
+    </div>
+    <div class="ft-col">
+      <h4 data-fr>Navigation</h4>
+      <h4 data-ar>التنقل</h4>
+      <ul>
+        <li><a href="#top"><span data-fr>Accueil</span><span data-ar>الرئيسية</span></a></li>
+        <li><a href="#robot"><span data-fr>Robot Agricole</span><span data-ar>الروبوت</span></a></li>
+        <li><a href="#iot"><span data-fr>Solutions IoT</span><span data-ar>حلول IoT</span></a></li>
+        <li><a href="#cloud"><span data-fr>GreenBot Cloud</span><span data-ar>السحابة</span></a></li>
+        <li><a href="#vision"><span data-fr>Vision SmartFarm</span><span data-ar>الرؤية</span></a></li>
+        <li><a href="#cofound"><span data-fr>Co-Fondateur</span><span data-ar>شريك مؤسس</span></a></li>
+        <li><a href="#contact"><span data-fr>Contact</span><span data-ar>اتصل بنا</span></a></li>
+      </ul>
+    </div>
+    <div class="ft-col">
+      <h4 data-fr>Robot & IoT</h4>
+      <h4 data-ar>الروبوت وIoT</h4>
+      <ul>
+        <li><a href="#robot">🤖 <span data-fr>Robot GreenBot</span><span data-ar>روبوت GreenBot</span></a></li>
+        <li><a href="#location">📦 <span data-fr>Location Robot</span><span data-ar>إيجار الروبوت</span></a></li>
+        <li><a href="#iot">🐔 Smart Poultry</a></li>
+        <li><a href="#iot">🐑 Smart Sheep</a></li>
+        <li><a href="#iot">🐄 Smart Cattle</a></li>
+        <li><a href="#iot">🌾 Smart Storage</a></li>
+        <li><a href="#iot">🌱 Smart Irrigation</a></li>
+        <li><a href="#iot">☀️ Smart Energy</a></li>
+      </ul>
+    </div>
+    <div class="ft-col">
+      <h4 data-fr>Domaines suggérés</h4>
+      <h4 data-ar>النطاقات المقترحة</h4>
+      <ul>
+        <li><a href="#">greenbot.r-iotsys.tn</a></li>
+        <li><a href="#">greenbot.tn</a></li>
+        <li><a href="#">greenbotsolutions.tn</a></li>
+        <li><a href="#">smartfarm.r-iotsys.tn</a></li>
+        <li><a href="#">tunnel-smart.tn</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="ft-bot">
+    <p>© 2026 GreenBot Solutions – R-IOTSYS. <span data-fr>Tous droits réservés.</span><span data-ar>جميع الحقوق محفوظة.</span></p>
+    <p data-fr>Robot Agricole Modulaire Électrique | Smart Agriculture & Livestock IoT 🌱🤖</p>
+    <p data-ar>روبوت زراعي معياري كهربائي | إنترنت الأشياء للزراعة الذكية 🌱🤖</p>
+  </div>
+</footer>
+
+<!-- ══════════ JS ══════════ -->
+<script>
+// LANG
+function setLang(l){
+  const h=document.documentElement;
+  h.setAttribute('data-lang',l);
+  h.setAttribute('lang',l);
+  h.setAttribute('dir',l==='ar'?'rtl':'ltr');
+  document.querySelectorAll('.lbtn').forEach(b=>{
+    b.classList.toggle('on',b.textContent===l.toUpperCase());
+  });
+}
+
+// THEME
+function toggleTheme(){
+  const h=document.documentElement;
+  const d=h.getAttribute('data-theme')==='dark';
+  h.setAttribute('data-theme',d?'light':'dark');
+  document.querySelector('.tbtn').textContent=d?'🌙':'☀️';
+}
+
+// MOBILE MENU
+function toggleMenu(){
+  const mn=document.getElementById('mnav');
+  mn.classList.toggle('open');
+}
+
+// SCROLL FADE
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target)}
+  });
+},{threshold:.12});
+document.querySelectorAll('.fu').forEach(el=>obs.observe(el));
+
+// CLOSE MOBILE NAV ON OUTSIDE CLICK
+document.addEventListener('click',e=>{
+  const mn=document.getElementById('mnav');
+  const hbg=document.getElementById('hbg');
+  if(mn.classList.contains('open')&&!mn.contains(e.target)&&!hbg.contains(e.target)){
+    mn.classList.remove('open');
+  }
+});
+</script>
+</body>
+</html>
